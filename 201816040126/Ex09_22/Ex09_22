@@ -1,0 +1,50 @@
+#include <cstdio>//perform the "stdio.h" by cpp
+#include <ctime>
+#include <iostream>
+
+#include "Time.h"
+
+using namespace std;
+
+/*struct//this struct is found on the Internet.It is used to show the current time.I copy the struct all.
+{
+    int tm_sec;
+    int tm_min;
+    int tm_hour;
+    int tm_mday;
+    int tm_mon;
+    int tm_year;
+    int tm_wday;
+    int tm_yday;
+    int tm_isdst;
+} tm ;//end it.It's all about the struct tm,but it may not be used.*/
+
+int main(int argc, char* argv[])//Return value is integer.
+{
+
+    time_t nowtime;//get the current time
+    struct tm *local;//make the calender time become the current time.It's found in the Internet.
+
+    time(&nowtime);
+    local = localtime(&nowtime);
+    printf("The current time: %02d-%02d-%02d %02d:%02d:%02d\n",
+            local->tm_year + 1900, local->tm_mon + 1, local->tm_mday,
+            local->tm_hour, local->tm_min, local->tm_sec);
+    //Because I use the "cstdio.h",I can show the current time by C style sentences.
+    //Above all are informations which I get from the Internet.It's useful.
+
+    Time t1( local->tm_hour, local->tm_min, local->tm_sec );//set object t1
+
+    cout << "\nThe universal current time : ";
+    t1.displayUniversal();//display the universal current time .
+
+    cout << "\nThe standard current time : ";
+    t1.displayStandard();//display the standard current time .
+
+    cout << "\n\nWhen I add 1 second to the current time,the time is :" ;
+    t1.Timetick();//add 1 second to the current time,and show it as standard time.
+
+    cout << "\n\nThe total seconds is :"
+    << t1.TotalSeconds() << endl;//calculate the total seconds.
+
+}
