@@ -7,7 +7,7 @@
 class Card
 {
 public:
-    Card(int face,int suit);
+    Card(int f,int s);
     void set_Face(int);
     void set_Suit(int);
     int get_Face();
